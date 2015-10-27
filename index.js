@@ -1,9 +1,9 @@
 'use strict';
 var mapObj = require('map-obj');
-var camelCase = require('camelcase');
+var decamelize = require('decamelize');
 
-module.exports = function (obj) {
+module.exports = function (obj, separator) {
 	return mapObj(obj, function (key, val) {
-		return [camelCase(key), val];
+		return [decamelize(key, separator), val];
 	});
 };

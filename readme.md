@@ -1,32 +1,47 @@
-# camelcase-keys [![Build Status](https://travis-ci.org/sindresorhus/camelcase-keys.svg?branch=master)](https://travis-ci.org/sindresorhus/camelcase-keys)
+# decamelize-keys [![Build Status](https://travis-ci.org/dsblv/decamelize-keys.svg?branch=master)](https://travis-ci.org/dsblv/decamelize-keys)
 
-> Convert object keys to camelCase using [`camelcase`](https://github.com/sindresorhus/camelcase)
+> Convert object keys from camelCase to lowercase with a custom separator using [`decamelize`](https://github.com/sindresorhus/decamelize)
+
+*This project was forked from [`camelcase-keys`](https://github.com/sindresorhus/camelcase-keys) and converted to do the opposite*
 
 
 ## Install
 
 ```sh
-$ npm install --save camelcase-keys
+$ npm install --save decamelize-keys
 ```
 
 
 ## Usage
 
 ```js
-var camelcaseKeys = require('camelcase-keys');
+const decamelizeKeys = require('decamelize-keys');
 
-camelcaseKeys({'foo-bar': true});
-//=> {fooBar: true}
-
-
-var argv = require('minimist')(process.argv.slice(2));
-//=> {_: [], 'foo-bar': true}
-
-camelcaseKeys(argv);
-//=> {_: [], fooBar: true}
+decamelizeKeys({fooBar: true}, '-');
+//=> {'foo-bar': true}
 ```
+
+
+## API
+
+### decamelizeKeys(input, [separator])
+
+### input
+
+Type: `object`  
+*Required*
+
+### separator
+
+Type: `string`  
+Default: `_`
+
+
+## Related
+
+See [`camelcase-keys`](https://github.com/sindresorhus/camelcase-keys) for the inverse.
 
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com), [Dmirty Sobolev](https://github.com/dsblv)
