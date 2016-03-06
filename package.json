@@ -52,8 +52,8 @@
     "convert"
   ],
   "devDependencies": {
-    "ava": "^0.3.0",
-    "xo": "^0.10.0"
+    "ava": "*",
+    "xo": "*"
   },
   "dependencies": {
     "decamelize": "^1.1.0",

@@ -1,12 +1,10 @@
 import test from 'ava';
-import decamelizeKeys from './';
+import fn from './';
 
 test('decamelization', t => {
-	t.ok(decamelizeKeys({fooBar: true}, '-')['foo-bar']);
-	t.end();
+	t.true(fn({fooBar: true}, '-')['foo-bar']);
 });
 
 test('default separator', t => {
-	t.ok(decamelizeKeys({fooBar: true}).foo_bar);
-	t.end();
+	t.true(fn({fooBar: true}).foo_bar);
 });
