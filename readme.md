@@ -24,17 +24,39 @@ decamelizeKeys({fooBar: true}, '-');
 
 ## API
 
-### decamelizeKeys(input, [separator])
+### decamelizeKeys(input, [separator], [options])
 
 ### input
 
 Type: `object`  
 *Required*
 
+Object to decamelize.
+
 ### separator
 
 Type: `string`  
 Default: `_`
+
+A string to insert between words.
+
+### options
+
+Type: `object`
+
+#### separator
+
+Type: `string`  
+Default: `_`
+
+Alternative way to specify [separator](#separator).
+
+#### exclude
+
+Type: `array`  
+Default: `[]`
+
+Exclude keys from being decamelized.
 
 
 ## Related
