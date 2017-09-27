@@ -6,28 +6,28 @@ test('main', t => {
 });
 
 test('separator as an option', t => {
-	t.true(m({fooBar: true}, {separator: '-'})['foo-bar']);
+	t.true(m({fooBaz: true}, {separator: '-'})['foo-baz']);
 });
 
 test('default separator', t => {
-	t.true(m({fooBar: true}).foo_bar);
+	t.true(m({fooQux: true}).foo_qux);
 });
 
 test('exclude option', t => {
-	t.true(m({fooBar: true}, {exclude: ['fooBar']}).fooBar);
+	t.true(m({barFoo: true}, {exclude: ['barFoo']}).barFoo);
 });
 
 test('deep option', t => {
 	t.deepEqual(
-		m({fooBar: true, obj: {oneTwo: false, arr: [{threeFour: true}]}}, {deep: true}),
+		m({barBaz: true, obj: {barQux: false, arr: [{bazFoo: true}]}}, {deep: true}),
 		// eslint-disable-next-line camelcase
-		{foo_bar: true, obj: {one_two: false, arr: [{three_four: true}]}}
+		{bar_baz: true, obj: {bar_qux: false, arr: [{baz_foo: true}]}}
 	);
 });
 
 test('deep option with separator as argument', t => {
 	t.deepEqual(
-		m({fooBar: true, obj: {oneTwo: false, arr: [{threeFour: true}]}}, '-', {deep: true}),
-		{'foo-bar': true, obj: {'one-two': false, arr: [{'three-four': true}]}}
+		m({bazBar: true, obj: {bazQux: false, arr: [{quxFoo: true}]}}, '-', {deep: true}),
+		{'baz-bar': true, obj: {'baz-qux': false, arr: [{'qux-foo': true}]}}
 	);
 });

@@ -1,10 +1,12 @@
 'use strict';
-var mapObj = require('map-obj');
 var decamelize = require('decamelize');
+var mapObj = require('map-obj');
+var QuickLru = require('quick-lru');
 
 var has = function (arr, key) {
 	return arr.indexOf(key) > -1;
 };
+var cache = new QuickLru({maxSize: 100000});
 
 module.exports = function (input, separator, options) {
 	if (typeof separator !== 'string') {
@@ -18,9 +20,17 @@ module.exports = function (input, separator, options) {
 
 	return mapObj(input, function (key, val) {
 		if (!(exclude && has(exclude, key))) {
-			var ret = decamelize(key, separator);
+			if (cache.has(key)) {
+				key = cache.get(key);
+			} else {
+				var ret = decamelize(key, separator);
 
-			key = ret;
+				if (key.length < 100) {
+					cache.set(key, ret);
+				}
+
+				key = ret;
+			}
 		}
 
 		return [key, val];

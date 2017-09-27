@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "decamelize": "^1.2.0",
-    "map-obj": "^2.0.0"
+    "map-obj": "^2.0.0",
+    "quick-lru": "^1.1.0"
   }
 }
