@@ -19,6 +19,9 @@ const decamelizeKeys = require('decamelize-keys');
 
 decamelizeKeys({fooBar: true}, '-');
 //=> {'foo-bar': true}
+
+decamelizeKeys({fooBar: true, nested: {unicornRainbow: true}}, , '-', {deep: true});
+//=> {foo_bar: true, nested: {unicorn_rainbow: true}}
 ```
 
 
@@ -28,14 +31,14 @@ decamelizeKeys({fooBar: true}, '-');
 
 ### input
 
-Type: `object`  
+Type: `object`
 *Required*
 
 Object to decamelize.
 
 ### separator
 
-Type: `string`  
+Type: `string`
 Default: `_`
 
 A string to insert between words.
@@ -53,14 +56,14 @@ Recurse nested objects and objects in arrays.
 
 #### exclude
 
-Type: `array`  
+Type: `string[]` `RegExp[]`<br>
 Default: `[]`
 
 Exclude keys from being decamelized.
 
 #### separator
 
-Type: `string`
+Type: `string`<br>
 Default: `_`
 
 Alternative way to specify [separator](#separator).
