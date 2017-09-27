@@ -2,6 +2,10 @@
 var mapObj = require('map-obj');
 var decamelize = require('decamelize');
 
+var has = function (arr, key) {
+	return arr.indexOf(key) > -1;
+};
+
 module.exports = function (input, separator, options) {
 	if (typeof separator !== 'string') {
 		options = separator;
@@ -13,7 +17,12 @@ module.exports = function (input, separator, options) {
 	var exclude = options.exclude || [];
 
 	return mapObj(input, function (key, val) {
-		key = exclude.indexOf(key) === -1 ? decamelize(key, separator) : key;
+		if (!(exclude && has(exclude, key))) {
+			var ret = decamelize(key, separator);
+
+			key = ret;
+		}
+
 		return [key, val];
-	});
+	}, {deep: options.deep});
 };

@@ -1,18 +1,33 @@
 import test from 'ava';
-import fn from './';
+import m from '.';
 
-test('decamelization', t => {
-	t.true(fn({fooBar: true}, '-')['foo-bar']);
+test('main', t => {
+	t.true(m({fooBar: true}, '-')['foo-bar']);
 });
 
 test('separator as an option', t => {
-	t.true(fn({fooBar: true}, {separator: '-'})['foo-bar']);
+	t.true(m({fooBar: true}, {separator: '-'})['foo-bar']);
 });
 
 test('default separator', t => {
-	t.true(fn({fooBar: true}).foo_bar);
+	t.true(m({fooBar: true}).foo_bar);
 });
 
-test('exclude key', t => {
-	t.true(fn({fooBar: true}, {exclude: ['fooBar']}).fooBar);
+test('exclude option', t => {
+	t.true(m({fooBar: true}, {exclude: ['fooBar']}).fooBar);
+});
+
+test('deep option', t => {
+	t.deepEqual(
+		m({fooBar: true, obj: {oneTwo: false, arr: [{threeFour: true}]}}, {deep: true}),
+		// eslint-disable-next-line camelcase
+		{foo_bar: true, obj: {one_two: false, arr: [{three_four: true}]}}
+	);
+});
+
+test('deep option with separator as argument', t => {
+	t.deepEqual(
+		m({fooBar: true, obj: {oneTwo: false, arr: [{threeFour: true}]}}, '-', {deep: true}),
+		{'foo-bar': true, obj: {'one-two': false, arr: [{'three-four': true}]}}
+	);
 });

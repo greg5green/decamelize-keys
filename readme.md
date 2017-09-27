@@ -44,12 +44,12 @@ A string to insert between words.
 
 Type: `object`
 
-#### separator
+##### deep
 
-Type: `string`  
-Default: `_`
+Type: `boolean`<br>
+Default: `false`
 
-Alternative way to specify [separator](#separator).
+Recurse nested objects and objects in arrays.
 
 #### exclude
 
@@ -57,6 +57,13 @@ Type: `array`
 Default: `[]`
 
 Exclude keys from being decamelized.
+
+#### separator
+
+Type: `string`
+Default: `_`
+
+Alternative way to specify [separator](#separator).
 
 
 ## Related

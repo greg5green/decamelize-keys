@@ -56,7 +56,7 @@
     "xo": "*"
   },
   "dependencies": {
-    "decamelize": "^1.1.0",
-    "map-obj": "^1.0.0"
+    "decamelize": "^1.2.0",
+    "map-obj": "^2.0.0"
   }
 }
